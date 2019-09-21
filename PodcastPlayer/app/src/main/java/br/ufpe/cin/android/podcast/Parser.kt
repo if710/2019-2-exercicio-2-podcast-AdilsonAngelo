@@ -27,7 +27,7 @@ object Parser {
                 val tag = parser.name
                 //delimitando que estamos apenas interessados em tags <item>
                 if (tag == "item") {
-                    var title = ""
+                    var title: String
                     while (parser.next() != XmlPullParser.END_TAG) {
                         if (parser.eventType == XmlPullParser.START_TAG) {
                             val tagAberta = parser.name
@@ -117,7 +117,8 @@ object Parser {
                 skip(parser)
             }
         }
-        return ItemFeed(title!!, link!!, pubDate!!, description!!, "carregar o link")
+
+        return ItemFeed(0, title!!, link!!, pubDate!!, description!!, "<a href=\"${link}\"/>")
     }
 
     // Processa tags de forma parametrizada no feed.
